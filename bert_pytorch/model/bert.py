@@ -18,7 +18,7 @@ class BERT(nn.Module):
         :param dropout: dropout rate
         """
 
-        super().__init__()
+        super(nn.Module).__init__()
         self.hidden = hidden
         self.n_layers = n_layers
         self.attn_heads = attn_heads

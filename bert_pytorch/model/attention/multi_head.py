@@ -8,7 +8,7 @@ class MultiHeadedAttention(nn.Module):
     """
 
     def __init__(self, h, d_model, dropout=0.1):
-        super().__init__()
+        super(nn.Module).__init__()
         assert d_model % h == 0
 
         # We assume d_v always equals d_k

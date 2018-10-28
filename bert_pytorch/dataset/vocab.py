@@ -96,17 +96,17 @@ class Vocab(TorchVocab):
         self.eos_index = 2
         self.sos_index = 3
         self.mask_index = 4
-        super().__init__(counter, specials=["<pad>", "<unk>", "<eos>", "<sos>", "<mask>"],
+        super(TorchVocab).__init__(counter, specials=["<pad>", "<unk>", "<eos>", "<sos>", "<mask>"],
                          max_size=max_size, min_freq=min_freq)
 
-    def to_seq(self, sentece, seq_len, with_eos=False, with_sos=False) -> list:
+    def to_seq(self, sentece, seq_len, with_eos=False, with_sos=False):
         pass
 
     def from_seq(self, seq, join=False, with_pad=False):
         pass
 
     @staticmethod
-    def load_vocab(vocab_path: str) -> 'Vocab':
+    def load_vocab(vocab_path):
         with open(vocab_path, "rb") as f:
             return pickle.load(f)
 
@@ -128,7 +128,7 @@ class WordVocab(Vocab):
 
             for word in words:
                 counter[word] += 1
-        super().__init__(counter, max_size=max_size, min_freq=min_freq)
+        super(Vocab).__init__(counter, max_size=max_size, min_freq=min_freq)
 
     def to_seq(self, sentence, seq_len=None, with_eos=False, with_sos=False, with_len=False):
         if isinstance(sentence, str):
@@ -162,7 +162,7 @@ class WordVocab(Vocab):
         return " ".join(words) if join else words
 
     @staticmethod
-    def load_vocab(vocab_path: str) -> 'WordVocab':
+    def load_vocab(vocab_path):
         with open(vocab_path, "rb") as f:
             return pickle.load(f)
 

@@ -6,7 +6,7 @@ import math
 class PositionalEmbedding(nn.Module):
 
     def __init__(self, d_model, max_len=512):
-        super().__init__()
+        super(nn.Module).__init__()
 
         # Compute the positional encodings once in log space.
         pe = torch.zeros(max_len, d_model).float()
